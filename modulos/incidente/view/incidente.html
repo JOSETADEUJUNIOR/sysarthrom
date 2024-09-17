@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="pt-br">
+
+<!--HEAD-->
+{{ topo }}
+<!--HEAD-->
+
+<!--CSS-->
+<link rel="stylesheet" href="modulos/configuracao/css/configuracao.css{{ update }}" />
+<!--CSS-->
+
+<body>
+    <!--CONTAINER-->
+    <div class="paginas">
+
+        <!--CSSMENU-->
+        {{ menu }}
+        <!--CSSMENU-->
+
+        <!--CENTRO-->
+        <div class="centro">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-cog fa-fw" aria-hidden="true"></i> Incidentes Cirurgicos
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <a href="configuracao" type="button" class="btn btn-default"><i class="fa fa-refresh"></i> Atualizar</a>
+                        <hr>
+                    </div>
+                        <table id="datatable-configuracao" class="table table-striped" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Constante</th>
+                                    <th>Valor</th>
+                                    <th>Descrição</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>tituloSistema</td>
+                                    <td id='tituloSistemaValue'><b>{{ tituloSistema }}</b></td>
+                                    <td>Título do sistema</td>
+                                    <td>
+                                        <button onclick="editar('tituloSistema','{{ tituloSistema }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>termo</td>
+                                    <td id='termoValue'><b>{{ termo }}</b></td>
+                                    <td>Termo de aceite de uso</td>
+                                    <td>
+                                        <button onclick="editar('termo','{{ termo }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>emailHost</td>
+                                    <td id='emailHostValue'><b>{{ emailHost }}</b></td>
+                                    <td>Endereço SMTP do serviço de email</td>
+                                    <td>
+                                        <button onclick="editar('emailHost','{{ emailHost }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>emailUsuario</td>
+                                    <td id='emailUsuarioValue'><b>{{ emailUsuario }}</b></td>
+                                    <td>Usuário do serviço de email</td>
+                                    <td>
+                                        <button onclick="editar('emailUsuario','{{ emailUsuario }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>emailSenha</td>
+                                    <td id='emailSenhaValue'><b>{{ emailSenha }}</b></td>
+                                    <td>Senha do serviço de email</td>
+                                    <td>
+                                        <button onclick="editar('emailSenha','{{ emailSenha }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>emailOrigem</td>
+                                    <td id='emailOrigemValue'><b>{{ emailOrigem }}</b></td>
+                                    <td>Email do serviço de email</td>
+                                    <td>
+                                        <button onclick="editar('emailOrigem','{{ emailOrigem }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>urlUpload</td>
+                                    <td id='urlUploadValue'><b>{{ urlUpload }}</b></td>
+                                    <td>Caminho para upload dos anexos</td>
+                                    <td>
+                                        <button onclick="editar('urlUpload','{{ urlUpload }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>emailDestino1</td>
+                                    <td id='emailDestino1Value'><b>{{ emailDestino1 }}</b></td>
+                                    <td>Email para receber as notificações do agendamento cirúrgico</td>
+                                    <td>
+                                        <button onclick="editar('emailDestino1','{{ emailDestino1 }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>emailDestino2</td>
+                                    <td id='emailDestino2Value'><b>{{ emailDestino2 }}</b></td>
+                                    <td>Email para receber cópia das notificações agendamento cirúrgico</td>
+                                    <td>
+                                        <button onclick="editar('emailDestino2','{{ emailDestino2 }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>emailDestino3</td>
+                                    <td id='emailDestino3Value'><b>{{ emailDestino3 }}</b></td>
+                                    <td>Email para receber as notificações do agendamento instrumental</td>
+                                    <td>
+                                        <button onclick="editar('emailDestino3','{{ emailDestino3 }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>emailDestino4</td>
+                                    <td id='emailDestino4Value'><b>{{ emailDestino4 }}</b></td>
+                                    <td>Email para receber cópia das notificações do agendamento instrumental</td>
+                                    <td>
+                                        <button onclick="editar('emailDestino4','{{ emailDestino4 }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>tituloEmail1</td>
+                                    <td id='tituloEmail1Value'><b>{{ tituloEmail1 }}</b></td>
+                                    <td>Título do email de agendamento cirúrgico</td>
+                                    <td>
+                                        <button onclick="editar('tituloEmail1','{{ tituloEmail1 }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>tituloEmail2</td>
+                                    <td id='tituloEmail2Value'><b>{{ tituloEmail2 }}</b></td>
+                                    <td>Título do email de agendamento instrumental</td>
+                                    <td>
+                                        <button onclick="editar('tituloEmail2','{{ tituloEmail2 }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>antecedenciaCirurgia</td>
+                                    <td id='antecedenciaCirurgiaValue'><b>{{ antecedenciaCirurgia }}h</b></td>
+                                    <td>Define o tempo de antecedência para um agendamento de cirurgia</td>
+                                    <td>
+                                        <button onclick="editar('antecedenciaCirurgia','{{ antecedenciaCirurgia }}')" class="btn btn-primary btn-xs m-b-5" data-toggle='modal' data-target='#configuracao'> 
+                                            <i class="fa fa-pencil"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    <!--MODAL-->
+                    <div class="modal fade" id="configuracao" tabindex="-1" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 id="t1">Configuração</h4>
+                                </div>
+                                <form action="/" id="form-configuracao">
+                                    <div class="modal-body">
+                                        <!--FORM-->
+                                        <fieldset>
+                                            <!-- Text input-->
+                                            <input type="hidden" name="data[]" id="constante">
+                                            <!-- Text input-->
+                                            <div class="form-group col-md-12">
+                                                <small id="emailHelp" class="form-text text-muted">Campos com (
+                                                    <span class="obrigatorio">
+                                                        <i class="fa fa-asterisk"></i>
+                                                    </span>
+                                                    ) são obrigatórios.
+                                                </small>
+                                            </div>
+                                            <!-- Text input-->
+                                            <div class="form-group col-md-12">
+                                                <div class="col-md-12">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura" id="t2">Valor:</div>
+                                                        <input type="text" class="form-control" name="data[]" id="valor" onkeyup="requerido('valor','p1')" maxlength="100" required>
+                                                        <div class="input-group-addon" id='p1'></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <!--FORM-->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary" id="botao_salvar"><i class="fa fa-save"></i> Salvar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--MODAL-->
+
+                </div>
+
+            </div>
+
+        </div>
+        <!--CENTRO-->
+
+    </div>
+    <!--CONTAINER-->
+</body>
+
+<!--FOOTER-->
+{{ rodape }}
+
+<!--CONFIGURAÇÃO-->
+<script src="modulos/configuracao/js/configuracao.js{{ update }}"></script>
+<!--CONFIGURAÇÃO-->
+
+<!--FOOTER-->

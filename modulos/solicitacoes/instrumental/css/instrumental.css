@@ -1,0 +1,39 @@
+.largura {
+    width: 115px;
+    text-align: right;
+}
+
+.obrigatorio {
+    color: red;
+    font-size: 8px
+}
+
+.nbrigatorio {
+    color: green;
+    font-size: 8px
+}
+
+.valido {
+    border: 1px solid green;
+}
+
+.invalido {
+    border: 1px solid red;
+}
+
+
+#cell-Recebido{
+  color: #ffcc00;
+}
+
+#cell-Confirmado{
+  color: #99cc33;
+}
+
+#cell-Cancelado{
+  color: #cc3300;
+}
+
+#cell-Aguardando{
+  color: #silver;
+}

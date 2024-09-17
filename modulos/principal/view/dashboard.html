@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-br">
+
+<!--HEAD-->
+
+{{ topo }}
+
+<!--HEAD-->
+
+<body>
+    <!--CONTAINER-->
+
+    <div class="paginas">
+
+        <!--CSSMENU-->
+
+        {{ menu }}
+
+        <!--CSSMENU-->
+
+        <!--CENTRO-->
+
+        <div class="centro">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart fa-fw" aria-hidden="true"></i> Dashboard</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <canvas id="bar-chartA"></canvas>
+                        </div>
+                        <div class="col-md-8">
+                            <canvas id="bar-chartB"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--CENTRO-->
+        
+    </div>
+
+    <!--CONTAINER-->
+</body>
+
+<!--FOOTER-->
+
+{{ rodape }}
+
+<!--FOOTER-->
+
+
+<!--GRAFICO-->
+
+<script src="modulos/principal/js/chart.min.js{{ update }}"></script>
+
+

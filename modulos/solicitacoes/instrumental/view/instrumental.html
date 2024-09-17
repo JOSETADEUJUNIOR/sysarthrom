@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="pt-br">
+
+<!--HEAD-->
+{{ topo }}
+<!--HEAD-->
+
+<!--CSS-->
+ <link rel="stylesheet" href="modulos/solicitacoes/instrumental/css/instrumental.css{{ update }}"/>
+<!--CSS-->
+
+<body>
+
+    <!--CONTAINER-->
+    <div class="paginas">
+        
+        <!--CSSMENU-->
+        {{ menu }}
+        <!--CSSMENU-->
+        
+        <!--CENTRO-->
+        <div class="centro">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-calendar fa-fw" aria-hidden="true"></i> Agendamento de Instrumental</div>
+
+                <!--CLIENTES-->
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ tag_a }}
+                        <div class="btn-group dropdown">
+                            <a href="#" class="btn btn-default" data-toggle='modal' data-target='#instrumental' onclick="instrumental()">
+                                <i class="fa fa-plus"></i> Cadastrar
+                            </a>
+                        </div>                        
+                        <hr>
+                        {{ tag_b }}
+                    </div>
+
+                    <!--DATATABLE-->
+                    <table id="datatable-instrumental" class="table table-striped" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Data Envio</th>
+                                <th>Data Cirurgia</th>
+                                <th>Cidade</th>
+                                <th>Material</th>
+                                <th>Transportadora</th>
+                                <th>Status</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <!--DATATABLE-->
+
+                    <!--MODAL-->
+                    <div class="modal fade" id="instrumental" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 id="solicitante"></h4>
+                                </div>
+                                <form action="/" id="form-instrumental" class="form-instrumental">
+                                    <div class="modal-body">
+                                        <!--FORM-->
+                                        <fieldset>
+                                            <!-- Text input-->
+                                            <input type="hidden" name="id" id="id">
+                                            <!-- Text input-->
+                                            <div class="form-group col-md-12">
+                                                <small id="emailHelp" class="form-text text-muted">Campos com ( <span class="obrigatorio"><i class="fa fa-asterisk"></i></span> ) são obrigatórios.</small>
+                                            </div>
+                                            <!-- Text input-->
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Data Envio:</div>
+                                                        <input type="text" class="form-control date" name="data[]" id="data_envio" onclick="requerido('data_envio','p1')" required autocomplete="off">
+                                                        <div class="input-group-addon" id='p1'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Data Cirurgia:</div>
+                                                        <input type="text" class="form-control date" name="data[]" id="data_cirurgia" onclick="requerido('data_cirurgia','p2')" required autocomplete="off">
+                                                        <div class="input-group-addon" id='p2'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Text input-->
+                          
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Cidade:</div>
+                                                           <select class="form-control" name="data[]" id="cidade" onclick="requerido('cidade','p3')" required>
+                                                                <option value="">.: Selecione :.</option>
+                                                                <option value="Cascavel">Cascavel</option>
+                                                                <option value="Foz do Iguaçu">Foz do Iguaçu</option>
+                                                                <option value="Maringá">Maringá</option>
+                                                                <option value="Medianeira">Medianeira</option>
+                                                                <option value="Pato Branco">Pato Branco</option>
+                                                            </select>
+                                                        <div class="input-group-addon" id='p3'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Transportadora:</div>                                                       
+                                                        <select class="form-control" name="data[]" id="transportadora" onclick="requerido('transportadora','p4')" required>
+                                                                <option value="">.: Selecione :.</option>
+                                                                <option value="Expresso São Miguel">Expresso São Miguel</option>
+                                                                <option value="Kombex">Kombex</option>
+                                                                <option value="Princesa dos Campos">Princesa dos Campos</option>
+                                                                <option value="Brasil Sul">Brasil Sul</option>
+                                                            </select>
+                                                        <div class="input-group-addon" id='p4'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-12">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Material:</div>
+                                                        <textarea rows="2" cols="" class="form-control" name="data[]" id="material" onkeyup="requerido('material','p5')" required style="resize: none"></textarea>
+                                                        <div class="input-group-addon" id='p5'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-12">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Observações:</div>
+                                                        <textarea rows="2" cols="" class="form-control" name="data[]" id="observacoes" onkeyup="opcional('observacoes','p6')" style="resize: none"></textarea>
+                                                        <div class="input-group-addon" id='p6'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <!--FORM-->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary" id="botao_salvar"><i class="fa fa-save"></i> Salvar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--MODAL-->
+
+                    <!--MODAL-->
+                    <div class="modal fade" id="instrumental_status" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4>Status da Solicitação</h4>
+                                </div>
+                                <form action="/" id="form-status" class="form-status">
+                                    <div class="modal-body">
+                                        <!--FORM-->
+                                        <fieldset>
+                                            <!-- Text input-->
+                                            <input type="hidden" name="id_" id="id_">
+                                            <!-- Text input-->
+                                            <div class="form-group col-md-12">
+                                                <small id="emailHelp" class="form-text text-muted">Campos com ( <span class="obrigatorio"><i class="fa fa-asterisk"></i></span> ) são obrigatórios.</small>
+                                            </div>
+                          
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-12">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Status:</div>                                                       
+                                                        <select class="form-control" name="data[]" id="status" onclick="requerido('status','p7'),statusObrigatorio()" required>
+                                                                <option value="">.: Selecione :.</option>
+                                                                <option value="Recebido">Recebido</option>
+                                                                <option value="Confirmado">Confirmado</option>
+                                                                <option value="Cancelado">Cancelado</option>
+                                                            </select>
+                                                        <div class="input-group-addon" id='p7'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-12">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Justificativa:</div>
+                                                        <textarea rows="2" cols="" class="form-control" name="data[]" id="justificativa" onkeyup="opcional('justificativa','p8')" style="resize: none"></textarea>
+                                                        <div class="input-group-addon" id='p8'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <!--FORM-->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary" id="botao_salvar_"><i class="fa fa-save"></i> Salvar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--MODAL-->
+
+               </div>
+                <!--CLIENTES-->
+
+            </div>
+        </div>
+        <!--CENTRO-->
+
+    </div>
+    <!--CONTAINER-->
+
+</body>
+
+<!--FOOTER INCLUDES-->
+{{ rodape }}
+
+<!--JS AGENDAMENTO-->
+<script src="modulos/solicitacoes/instrumental/js/instrumental.js{{ update }}"></script>
+<!--JS AGENDAMENTO-->
+
+<!--FOOTER-->

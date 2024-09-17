@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="pt-br">
+
+<!--HEAD-->
+{{ topo }}
+<!--HEAD-->
+
+<!--CSS-->
+ <link rel="stylesheet" href="modulos/solicitacoes/cirurgico/css/cirurgico.css{{ update }}"/>
+<!--CSS-->
+
+<body>
+
+    <!--CONTAINER-->
+    <div class="paginas">
+        
+        <!--CSSMENU-->
+        {{ menu }}
+        <!--CSSMENU-->
+        
+        <!--CENTRO-->
+        <div class="centro">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-calendar fa-fw" aria-hidden="true"></i> Agendamento de Cirurgia</div>
+
+                <!--CLIENTES-->
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ tag_a }}
+                        <div class="btn-group dropdown">
+                            <a href="#" class="btn btn-default" data-toggle='modal' data-target='#cirurgico' onclick="cirurgico()">
+                                <i class="fa fa-plus"></i> Cadastrar
+                            </a>
+                        </div>
+                        {{ tag_b }}
+                        <div class="btn-group dropdown">
+                            <a target="_blank" href="pdf/termo01.pdf" class="btn btn-default">
+                                <i class="fa fa-print"></i> Termo Paciente Particular
+                            </a>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <!--DATATABLE-->
+                    <table id="datatable-cirurgico" class="table table-striped" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Hospital</th>
+                                <th>Médico</th>
+                                <th>Paciente</th>
+                                <th>Procedimento</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <!--DATATABLE-->
+
+                    <!--MODAL-->
+                    <div class="modal fade" id="cirurgico" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 id="solicitante"></h4>
+                                </div>
+                                <form action="/" id="form-cirurgico" class="form-cirurgico">
+                                    <div class="modal-body">
+                                        <!--FORM-->
+                                        <fieldset>
+                                            <!-- Text input-->
+                                            <input type="hidden" name="id" id="id">
+                                            <!-- Text input-->
+                                            <div class="form-group col-md-12">
+                                                <small id="emailHelp" class="form-text text-muted">Campos com ( <span class="obrigatorio"><i class="fa fa-asterisk"></i></span> ) são obrigatórios.</small>
+                                            </div>
+                                            <!-- Text input-->
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Data:</div>
+                                                        <input type="text" class="form-control date" name="data[]" id="data" onclick="requerido('data','p5')" required autocomplete="off">
+                                                        <div class="input-group-addon" id='p5'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Hora:</div>
+                                                        <input type="text" class="form-control time" name="data[]" id="hora" onclick="requerido('hora','p6')" required autocomplete="off">
+                                                        <div class="input-group-addon" id='p6'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Text input-->
+                                            <!-- Text input-->
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Convênio:</div>
+                                                        <input type="text" class="form-control" name="data[]" id="convenio" onkeyup="requerido('convenio','p1')" required>
+                                                        <div class="input-group-addon" id='p1'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Hospital:</div>
+                                                        <input type="text" class="form-control" name="data[]" id="hospital" onkeyup="requerido('hospital','p2')" required>
+                                                        <div class="input-group-addon" id='p2'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Text input-->
+                          
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Médico:</div>
+                                                        <input type="text" class="form-control" name="data[]" id="medico" onkeyup="requerido('medico','p3')" required>
+                                                        <div class="input-group-addon" id='p3'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Paciente:</div>
+                                                        <input type="text" class="form-control" name="data[]" id="paciente" onkeyup="requerido('paciente','p4')" required>
+                                                        <div class="input-group-addon" id='p4'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>                                            
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-12">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Procedimento:</div>
+                                                        <input type="text" class="form-control" name="data[]" id="procedimento" onkeyup="requerido('procedimento','p7')" required>
+                                                        <div class="input-group-addon" id='p7'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-12">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Material:</div>
+                                                        <textarea rows="2" cols="" class="form-control" name="data[]" id="material" onkeyup="requerido('material','p8')" required style="resize: none"></textarea>
+                                                        <div class="input-group-addon" id='p8'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-12">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Observações:</div>
+                                                        <textarea rows="2" cols="" class="form-control" name="data[]" id="observacoes" onkeyup="opcional('observacoes','p9')" style="resize: none"></textarea>
+                                                        <div class="input-group-addon" id='p9'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Text input-->
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-4">
+                                                    <div class="input-group">
+                                                        <j id='anexo1'></j>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <div class="input-group">
+                                                        <j id='anexo2'></j>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <div class="input-group">
+                                                        <j id='anexo3'></j>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Text input-->
+                                        </fieldset>
+                                        <!--FORM-->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <k id='anexo4'></k>
+                                        <k id='anexo5'></k>
+                                        <k id='anexo6'></k>
+                                        <button type="submit" class="btn btn-primary" id="botao_salvar"><i class="fa fa-save"></i> Salvar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--MODAL-->
+
+                    <!--MODAL-->
+                    <div class="modal fade" id="email" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 id="t1">Enviar cópia do Agendamento!</h4>
+                                </div>
+                                <form action="/" id="form-email" class="form-email">
+                                    <div class="modal-body">
+                                        <!--FORM-->
+                                        <fieldset>
+                                            <div class="form-group col-md-12">
+                                                <small id="emailHelp" class="form-text text-muted">Campos com ( <span class="obrigatorio"><i class="fa fa-asterisk"></i></span> ) são obrigatórios.</small>
+                                                <input type="hidden" name="id_mail" id="id_mail">
+                                            </div>
+                                            
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-12">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Para:</div>
+                                                        <input type="text" class="form-control" name="email[]" id="para" onkeyup="requerido('para','p10')" required>
+                                                        <div class="input-group-addon" id='p10'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group col-md-12">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon largura">Cc:</div>
+                                                        <input type="text" class="form-control" name="email[]" id="cc" onkeyup="opcional('cc','p11')">
+                                                        <div class="input-group-addon" id='p11'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </fieldset>
+                                        <!--FORM-->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary" id="botao_email"><i class="fa fa-envelope"></i> Enviar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--MODAL-->
+
+                </div>
+                <!--CLIENTES-->
+
+            </div>
+        </div>
+        <!--CENTRO-->
+
+    </div>
+    <!--CONTAINER-->
+
+</body>
+
+<!--FOOTER INCLUDES-->
+{{ rodape }}
+
+<!--JS AGENDAMENTO-->
+<script src="modulos/solicitacoes/cirurgico/js/cirurgico.js{{ update }}"></script>
+<!--JS AGENDAMENTO-->
+
+<!--FOOTER-->

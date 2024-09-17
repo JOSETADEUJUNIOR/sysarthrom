@@ -1,0 +1,14 @@
+.largura {
+    width: 115px;
+    text-align: right;
+}
+
+.obrigatorio {
+    color: red;
+    font-size: 8px
+}
+
+.nbrigatorio {
+    color: green;
+    font-size: 8px
+}

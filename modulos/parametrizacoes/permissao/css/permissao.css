@@ -1,0 +1,39 @@
+.largura {
+    width: 115px;
+    text-align: right;
+}
+
+.obrigatorio {
+    color: red;
+    font-size: 8px
+}
+
+.nbrigatorio {
+    color: green;
+    font-size: 8px
+}
+
+.data{
+	//font-weight: bold;
+	//color: red
+}
+
+/* Estilizando a modal */
+.roll {
+  max-height: 60vh; /* Definindo a altura máxima da modal */
+  overflow-y: auto; /* Habilitando a barra de rolagem vertical quando necessário */
+}
+
+.checkbox-group {
+    margin-bottom: 10px;
+}
+.checkbox-group strong {
+    margin-bottom: 5px;
+    display: block;
+}
+.checkbox-group input[type="checkbox"] {
+    margin-left: 10px;
+}
+.checkbox-group label {
+    font-weight: normal; /* Remove o negrito */
+}

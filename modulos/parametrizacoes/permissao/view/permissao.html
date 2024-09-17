@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="pt-br">
+
+<!--HEAD-->
+{{ topo }}
+<!--HEAD-->
+
+<!--CSS-->
+<link rel="stylesheet" href="modulos/parametrizacoes/permissao/css/permissao.css{{ update }}"/>
+<!--CSS-->
+
+<body>
+
+    <!--CONTAINER-->
+    <div class="paginas">
+
+        <!--CSSMENU-->
+        {{ menu }}
+        <!--CSSMENU-->
+
+        <!--CENTRO-->
+        <div class="centro">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-lock fa-fw" aria-hidden="true"></i> Permissões</div>
+
+                    <!--CLIENTES-->
+                    <div class="panel-body">
+                        <div class="form-group">
+                            {{ tag_a }}
+                            <button type="button" class="btn btn-default" data-toggle='modal' data-target='#permissao' onclick="permissao()">
+                                <i class="fa fa-plus"></i> Cadastrar</button>
+                                <hr>
+                            {{ tag_b }}
+                            </div>
+
+                            <!--DATATABLE-->
+                            <table id="datatable-permissao" class="table table-striped" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nível</th>                                        
+                                        <th>Criado</th>
+                                        <th>Situação</th>
+                                        <th>Ação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <!--DATATABLE-->
+
+                            <!--MODAL-->
+                            <div class="modal fade" id="permissao" tabindex="-1" role="dialog" data-backdrop="static">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 id="t1">Permissão</h4>
+                                        </div>
+                                        <form action="/" id="form-permissao" method="post">
+                                            <div class="modal-body">
+                                                <!--FORM-->
+                                                <fieldset>
+                                                    <!-- Text input-->
+                                                    <input type="hidden" name="id" id="id">
+                                                    <!-- Text input-->
+                                                    <div class="form-group col-md-12">
+                                                        <small id="emailHelp" class="form-text text-muted">Campos com ( <span class="obrigatorio">
+                                                            <i class="fa fa-asterisk"></i></span> ) são obrigatórios.
+                                                        </small>
+                                                    </div>
+                                                    <!-- Text input-->
+                                                    <div class="form-group col-md-12">
+                                                        <div class="col-md-12">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon largura" id="t2">Nome:</div>
+                                                                <input type="text" class="form-control" name="data[]" id="nome" onkeyup="requerido('nome','p1')" maxlength="40" required>
+                                                                <div class="input-group-addon" id='p1'><i class="fa fa-asterisk obrigatorio"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <hr>
+                                                            <div class="panel-group roll" id="accordion">
+                                                            <!-- Painel 1 - Principal -->
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading">
+                                                                        <h4 class="panel-title">
+                                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Principal</a>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div id="collapseOne" class="panel-collapse collapse">
+                                                                        <div class="panel-body">
+                                                                            <div class="checkbox-group">
+                                                                                <strong>Dashboard</strong>
+                                                                                <!--<input type="checkbox" name="editar_dashboard" value="1"> Editar-->
+                                                                                <label><input type="checkbox" name="visualizar_dashboard" value="1"> Visualizar</label>
+                                                                                <!--<input type="checkbox" name="excluir_dashboard" value="1"> Excluir-->
+                                                                            </div>
+                                                                            <hr>
+                                                                            <div class="checkbox-group">
+                                                                                <strong>Agenda</strong>
+                                                                                <label><input type="checkbox" name="adicionar_agenda" value="1"> Adicionar</label>
+                                                                                <label><input type="checkbox" name="editar_agenda" value="1"> Editar</label>
+                                                                                <label><input type="checkbox" name="visualizar_agenda" value="1"> Visualizar</label>
+                                                                                <label><input type="checkbox" name="excluir_agenda" value="1"> Excluir</label>
+                                                                                <label><input type="checkbox" name="registros_agenda" value="1"> Listar Todos</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Painel 2 - Cadastros -->
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading">
+                                                                        <h4 class="panel-title">
+                                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Cadastros</a>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                                                        <div class="panel-body">
+                                                                            <div class="checkbox-group">
+                                                                                <strong>Usuários</strong>
+                                                                                <label><input type="checkbox" name="adicionar_usuarios" value="1"> Adicionar</label>
+                                                                                <label><input type="checkbox" name="editar_usuarios" value="1"> Editar</label>
+                                                                                <label><input type="checkbox" name="visualizar_usuarios" value="1"> Visualizar</label>
+                                                                                <label><input type="checkbox" name="excluir_usuarios" value="1"> Excluir</label>
+                                                                                <label><input type="checkbox" name="registros_usuarios" value="1"> Listar Todos</label>
+                                                                                <label><input type="checkbox" name="nivel_usuarios" value="1"> Alterar Nivel</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Painel 3 - Solicitações -->
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading">
+                                                                        <h4 class="panel-title">
+                                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Solicitações</a>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div id="collapseThree" class="panel-collapse collapse">
+                                                                        <div class="panel-body">
+                                                                            <div class="checkbox-group">
+                                                                                <strong>Agendamento Instrumental</strong>
+                                                                                <label><input type="checkbox" name="adicionar_instrumental" value="1"> Adicionar</label>
+                                                                                <label><input type="checkbox" name="editar_instrumental" value="1"> Editar</label>
+                                                                                <label><input type="checkbox" name="visualizar_instrumental" value="1"> Visualizar</label>
+                                                                                <label><input type="checkbox" name="excluir_instrumental" value="1"> Excluir</label>
+                                                                                <label><input type="checkbox" name="registros_instrumental" value="1"> Listar Todos</label>
+                                                                                <label><input type="checkbox" name="email_instrumental" value="1"> Enviar E-mail</label>
+                                                                                <label><input type="checkbox" name="status_instrumental" value="1"> Alterar Status</label>
+                                                                            </div>
+                                                                            <hr>
+                                                                            <div class="checkbox-group">
+                                                                                <strong>Agendamento Cirúrgico</strong>
+                                                                                <label><input type="checkbox" name="adicionar_cirurgico" value="1"> Adicionar</label>
+                                                                                <label><input type="checkbox" name="editar_cirurgico" value="1"> Editar</label>
+                                                                                <label><input type="checkbox" name="visualizar_cirurgico" value="1"> Visualizar</label>
+                                                                                <label><input type="checkbox" name="excluir_cirurgico" value="1"> Excluir</label>
+                                                                                <label><input type="checkbox" name="registros_cirurgico" value="1"> Listar Todos</label>
+                                                                                <label><input type="checkbox" name="email_cirurgico" value="1"> Enviar E-mail</label>
+                                                                                <label><input type="checkbox" name="status_cirurgico" value="1"> Alterar Status</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Painel 4 - Parametrizações -->
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading">
+                                                                        <h4 class="panel-title">
+                                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Parametrizações</a>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div id="collapseFour" class="panel-collapse collapse">
+                                                                        <div class="panel-body">
+                                                                            <div class="checkbox-group">
+                                                                                <strong>Permissões</strong>
+                                                                                <label><input type="checkbox" name="adicionar_permissao" value="1"> Adicionar</label>
+                                                                                <label><input type="checkbox" name="editar_permissao" value="1"> Editar</label>
+                                                                                <label><input type="checkbox" name="visualizar_permissao" value="1"> Visualizar</label>
+                                                                                <label><input type="checkbox" name="excluir_permissao" value="1"> Excluir</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Painel 5 - Telas -->
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading">
+                                                                        <h4 class="panel-title">
+                                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Telas</a>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div id="collapseFive" class="panel-collapse collapse">
+                                                                        <div class="panel-body">
+                                                                            <div class="checkbox-group">
+                                                                                <strong>Londrina</strong>
+                                                                                <!--<input type="checkbox" name="editar_londrina" value="1"> Editar-->
+                                                                                <label><input type="checkbox" name="visualizar_londrina" value="1"> Visualizar</label>
+                                                                                <!--<input type="checkbox" name="excluir_londrina" value="1"> Excluir-->
+                                                                            </div>
+                                                                            <hr>
+                                                                            <div class="checkbox-group">
+                                                                                <strong>Maringá</strong>
+                                                                                <!--<input type="checkbox" name="editar_maringa" value="1"> Editar-->
+                                                                                <label><input type="checkbox" name="visualizar_maringa" value="1"> Visualizar</label>
+                                                                                <!--<input type="checkbox" name="excluir_maringa" value="1"> Excluir-->
+                                                                            </div>
+                                                                            <hr>
+                                                                            <div class="checkbox-group">
+                                                                                <strong>Cascavel</strong>
+                                                                                <!--<input type="checkbox" name="editar_maringa" value="1"> Editar-->
+                                                                                <label><input type="checkbox" name="visualizar_cascavel" value="1"> Visualizar</label>
+                                                                                <!--<input type="checkbox" name="excluir_maringa" value="1"> Excluir-->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Painel 6 - Configurações -->
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading">
+                                                                        <h4 class="panel-title">
+                                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">Configurações</a>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div id="collapseSix" class="panel-collapse collapse">
+                                                                        <div class="panel-body">
+                                                                            <div class="checkbox-group">                                                                 
+                                                                                <label><input type="checkbox" name="editar_configuracao" value="1"> Editar</label>
+                                                                                <label><input type="checkbox" name="visualizar_configuracao" value="1"> Visualizar</label>
+                                                                            </div>                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </fieldset>
+                                                <!--FORM-->
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" id="botao_salvar"><i class="fa fa-save"></i> Salvar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--MODAL-->
+                        </div>
+                        <!--CLIENTES-->
+                    </div>
+                </div>
+            </div>
+            <!--CENTRO-->
+        </div>
+        <!--CONTAINER-->
+
+    </body>
+
+    <!--FOOTER PASTA INCLUDES-->
+    {{ rodape }}
+
+    <!--PRINCIPAL-->
+
+    <script src="modulos/parametrizacoes/permissao/js/permissao.js{{ update }}"></script>
+
+    <!--PRINCIPAL-->
+
+<!--FOOTER-->

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-br">
+
+<!--HEAD-->
+{{ topo }}
+<!--HEAD-->
+
+<!--CSS-->
+<link rel="stylesheet" href="modulos/tela/css/tela.css{{ update }}"/>
+<!--CSS-->
+
+<body>
+
+    <!--CONTAINER-->
+    <div class="paginas">
+
+        <!--CSSMENU-->
+        {{ menu }}
+        <!--CSSMENU-->
+
+        <!--CENTRO-->
+        <div class="centro">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-window-restore fa-fw" aria-hidden="true"></i> Tela de Agendamento</div>
+
+                    <!--CLIENTES-->
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <a href="tela-londrina" type="button" class="btn btn-default"><i class="fa fa-refresh"></i> Atualizar</a>
+                        <hr>
+                    </div>
+                            <!--DATATABLE-->
+                            <table id="datatable-tela" class="table" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Hora</th>
+                                        <th>Paciente</th>
+                                        <th>Médico</th>
+                                        <th>Hospital</th>
+                                        <th>Cirugia</th>
+                                        <th>Convênio</th>
+                                        <th>Instrumentador</th>
+                                        <th>Ação</th>
+                                    </tr> 
+                                </thead>
+                                <tbody id="tbody">
+                                    {{ londrina }}
+                                </tbody>
+                            </table>
+                            <!--DATATABLE-->
+
+                            <!--MODAL-->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Cirurgia</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Paciente</label>
+                                                    <input type="text" class="form-control" id="mostraPaciente" disabled>
+                                                </div>
+                    
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Observa&ccedil;&otilde;es</label>
+                                                    <textarea id="mostraObs" disabled class="form-control" rows="6"></textarea>
+                                                </div>
+                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <!--MODAL-->
+
+                        </div>
+                        <!--CLIENTES-->
+
+                    </div>
+                </div>
+            </div>
+            <!--CENTRO-->
+
+        </div>
+        <!--CONTAINER-->
+
+    </body>
+
+    <!--FOOTER PASTA INCLUDES-->
+    {{ rodape }}
+
+    <!--PRINCIPAL-->
+
+    <script src="modulos/tela/js/tela.js{{ update }}"></script>
+
+    <!--PRINCIPAL-->
+
+<!--FOOTER-->

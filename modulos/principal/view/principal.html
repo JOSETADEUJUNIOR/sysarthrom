@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pt-br">
+
+<!--HEAD-->
+
+{{ topo }}
+
+<!--HEAD-->
+
+<body>
+    <!--CONTAINER-->
+
+    <div class="paginas">
+
+        <!--CSSMENU-->
+
+        {{ menu }}
+
+        <!--CSSMENU-->
+
+        <!--CENTRO-->
+
+        <div class="centro">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart fa-fw" aria-hidden="true"></i> Dashboard
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="chart-container" style="position: relative; height: 70vh; width: 100%;">
+                                <canvas id="accessChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--CENTRO-->
+        
+    </div>
+
+    <!--CONTAINER-->
+</body>
+
+<!--FOOTER-->
+
+{{ rodape }}
+
+<!--FOOTER-->
+
+
+<!--GRAFICO-->
+
+<script src="modulos/principal/js/chart.min.js{{ update }}"></script>
+<script>
+    // Função para obter os cookies
+    function getCookie(name) {
+        let cookieArr = document.cookie.split(";");
+
+        for(let i = 0; i < cookieArr.length; i++) {
+            let cookiePair = cookieArr[i].split("=");
+
+            if(name == cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+
+        return null;
+    }
+
+    // Função para definir os cookies
+    function setCookie(name, value, days) {
+        let date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        let expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+
+    // Função para atualizar o cookie de Visitas
+    function updateAccessCookie() {
+        let accessData = getCookie("accessData");
+        let today = new Date();
+        let month = today.getMonth() + 1;
+        let year = today.getFullYear();
+        let currentMonth = `${year}-${month}`;
+
+        if (accessData) {
+            accessData = JSON.parse(accessData);
+        } else {
+            accessData = {};
+        }
+
+        if (accessData[currentMonth]) {
+            accessData[currentMonth]++;
+        } else {
+            accessData[currentMonth] = 1;
+        }
+
+        setCookie("accessData", JSON.stringify(accessData), 365);
+        return accessData;
+    }
+
+    // Atualiza o cookie e obtem os dados
+    let accessData = updateAccessCookie();
+
+    // Prepara os dados para o gráfico
+    function prepareChartData(accessData) {
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let today = new Date();
+        let year = today.getFullYear();
+
+        // Inicializa os dados do gráfico para todos os meses do ano atual
+        let chartData = {};
+        for (let i = 0; i < 12; i++) {
+            chartData[`${year}-${i + 1}`] = 0;
+        }
+
+        // Preenche os dados do gráfico com os dados dos cookies
+        for (let key in accessData) {
+            chartData[key] = accessData[key];
+        }
+
+        // Prepara os rótulos e os dados para o gráfico
+        let labels = [];
+        let data = [];
+        for (let i = 0; i < 12; i++) {
+            let monthKey = `${year}-${i + 1}`;
+            labels.push(`${monthNames[i]} ${year}`);
+            data.push(chartData[monthKey]);
+        }
+        
+        return { labels, data };
+    }
+
+    let chartData = prepareChartData(accessData);
+
+    // Configuração do gráfico
+    const config = {
+        type: 'line',
+        data: {
+            labels: chartData.labels,
+            datasets: [{
+                label: 'Visitas no Mês',
+                data: chartData.data,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    // Renderiza o gráfico
+    window.onload = function() {
+        var ctx = document.getElementById('accessChart').getContext('2d');
+        new Chart(ctx, config);
+    };
+</script>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-br">
+
+<!--HEAD-->
+{{ topo }}
+<!--HEAD-->
+
+<!--CSS-->
+<link rel="stylesheet" href="modulos/principal/css/agenda.css{{ update }}"/>
+<!--CSS-->
+
+<body>
+
+    <!--CONTAINER-->
+    <div class="paginas">
+
+        <!--CSSMENU-->
+        {{ menu }}
+        <!--CSSMENU-->
+
+        <!--CENTRO-->
+        <div class="centro">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-calendar fa-fw" aria-hidden="true"></i> Agenda</div>
+
+                    <!--CLIENTES-->
+                    <div class="panel-body">
+                        <div class="form-group">
+                            {{ tag_a }}
+                            <button type="button" class="btn btn-default" data-toggle='modal' data-target='#agenda' onclick="agenda()">
+                                <i class="fa fa-plus"></i> Cadastrar</button>
+                                <hr>
+                            </div>
+                            {{ tag_b }}
+
+                            <!--DATATABLE-->
+                            <table id="datatable-agenda" class="table table-striped" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Data</th>
+                                        <th>Titulo</th>
+                                        <th>Ação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <!--DATATABLE-->
+
+                            <!--MODAL-->
+                            <div class="modal fade" id="agenda" tabindex="-1" role="dialog" data-backdrop="static">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 id="t1">Evento</h4>
+                                        </div>
+                                        <form action="/" id="form-agenda">
+                                            <div class="modal-body">
+                                                <!--FORM-->
+                                                <fieldset>
+                                                    <!-- Text input-->
+                                                    <input type="hidden" name="id" id="id">
+                                                    <!-- Text input-->
+                                                    <div class="form-group col-md-12">
+                                                        <small id="emailHelp" class="form-text text-muted">Campos com ( <span class="obrigatorio">
+                                                            <i class="fa fa-asterisk"></i></span> ) são obrigatórios.
+                                                        </small>
+                                                    </div>
+                                                    <!-- Text input-->
+                                                    <div class="form-group col-md-12">
+                                                        <div class="col-md-12">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon largura" id="t2">Titulo:</div>
+                                                                <input type="text" class="form-control" name="data[]" id="titulo" onkeyup="requerido('titulo','p1')" maxlength="40" required>
+                                                                <div class="input-group-addon" id='p1'></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Text input-->
+                                                    <div class="col-md-12">
+                                                        <div class="form-group col-md-12">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon largura">Descrição:</div>
+                                                                <textarea rows="3" class="form-control" name="data[]" id="descricao" onkeyup="requerido('descricao','p2')" maxlength="100" required></textarea>
+                                                                <div class="input-group-addon" id='p2'></div>
+                                                            </div>
+                                                            <small class="form-text text-muted">Caracteres restantes:</small> 
+                                                            <small id="caracteresRestantes" class="form-text text-muted">100</small>
+                                                        </div>                                           
+                                                    </div> 
+                                                    <!-- Text input-->
+                                                    <div class="col-md-12">
+                                                        <div class="form-group col-md-6">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon largura" id="t3">Data:</div>
+                                                                <input type="text" class="form-control date" name="data[]" id="data" onclick="requerido('data','p3')" required>
+                                                                <div class="input-group-addon" id='p3'></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                                                      
+                                                </fieldset>
+                                                <!--FORM-->
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" id="botao_salvar"><i class="fa fa-save"></i> Salvar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--MODAL-->
+                        </div>
+                        <!--CLIENTES-->
+                    </div>
+                </div>
+            </div>
+            <!--CENTRO-->
+        </div>
+        <!--CONTAINER-->
+
+    </body>
+
+    <!--FOOTER PASTA INCLUDES-->
+    {{ rodape }}
+    
+
+    <!--PRINCIPAL-->
+    <script src="modulos/principal/js/principal.js{{ update }}"></script>
+    <!--PRINCIPAL-->
+
+    <!--FOOTER-->
+

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Login</title>
+    <link rel="stylesheet" href="font/css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
+    <link href="images/favicon.png" rel="icon">
+
+    <!-- Preloader css must be first -->
+    <link rel="stylesheet" href="css/preloader.css"/>
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<!--Pre-Loader-->
+<div id="preloader"><img src="images/loading.gif" width="40px"></div>
+<!--Pre-Loader-->
+
+<body style="visibility:hidden">
+    <div class="container">
+        <form class="form-signin" action="/" id="logon">            
+            <h2><a target="_blank" href='#'><img src='images/logo.png' style="max-width: 320px"></a></h2>
+            <p><input type="text" name="usuario" class="form-control" placeholder="Login" required autofocus></p>
+            <p><input type="password" name="senha" class="form-control" placeholder="Senha" required></p>
+            <div class="checkbox">
+                <p><a href="senha"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i> Esqueceu sua senha?</a></p>
+            </div>            
+            <button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: #001438" id='botao_entrar'>Entrar</button>
+            <p>
+            {{ alerta }}
+            </p>
+        </form>
+    </div>
+    <!-- /container -->
+</body>
+
+<!--FOOTER-->
+<script src="modulos/login/js/jquery.min.js"></script>
+<script src="modulos/login/js/post.ajax.js"></script>
+
+<!--Pre-Loader-->
+<script src="js/preloader.js"></script>
+<!--Pre-Loader-->
+
+<script type="text/javascript">
+    onload = function(){
+        document.body.style.visibility="visible"
+    }
+</script>
+
+</html>
